@@ -16,6 +16,8 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
+import context.Context;
+import toolbar.ToolbarManager;
 import book.Book;
 import book.BookContentProvider;
 import book.BookLabelProvider;
@@ -24,33 +26,13 @@ import book.BookSorter;
 public class Main {
 
 	public static void main(String[] args) {
-		Display display = new Display();
-		Shell shell = new Shell(display);
-		shell.setText("Bonjour");
-		shell.setSize(1024, 768);
 		
+		Shell shell = Context.getShell();
+		Display display = Context.getDisplay();
 		
+		ToolbarManager tbm = new ToolbarManager();
+		tbm.init();
 		
-//		Label label = new Label(shell, SWT.NONE);
-//		label.setText("Bonjour!");
-//		label.setSize(100,25);
-		
-//		Text text = new Text(shell, SWT.NONE);
-//		text.setSize(100,25);
-		
-		ToolBar toolbar = new ToolBar(shell, SWT.FLAT);
-		toolbar.setSize(shell.getSize().x, 100);
-		toolbar.setLocation(shell.getSize().x/2 - 64, 0);
-
-		Image imageBtn1 = new Image(display, "images/basket.png");
-		ToolItem btn1 = new ToolItem(toolbar, SWT.PUSH);
-		btn1.setImage(imageBtn1);
-		btn1.setText("Mon Panier");
-
-		Image imageBtn2 = new Image(display, "images/books.png");
-		ToolItem btn2 = new ToolItem(toolbar, SWT.PUSH);
-		btn2.setImage(imageBtn2);
-		btn2.setText("Bibliothèque");
 
 		TableViewer tableViewer = new TableViewer(shell, SWT.None);
 		Table table = tableViewer.getTable();
@@ -104,8 +86,8 @@ public class Main {
 			if (!display.readAndDispatch())
 				display.sleep();
 		}
-			
-		//imageBtn1.dispose();
+		
 		display.dispose();
+		tbm.dispose();
 	}
 }
