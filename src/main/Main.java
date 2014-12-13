@@ -53,7 +53,7 @@ public class Main {
 	    	list.add(new Book("titre", "autor", new Random().nextLong()));
 	    }
 
-	    BookSorter bs = new BookSorter(tableViewer);
+	    final BookSorter bs = new BookSorter(tableViewer);
 	    for (int i=0; i<titles.length; i++) {
 	    	final int index=i;
 	    	table.getColumn(i).addSelectionListener(new SelectionListener() {
