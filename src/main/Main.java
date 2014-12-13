@@ -33,59 +33,8 @@ public class Main {
 		ToolbarManager tbm = new ToolbarManager();
 		tbm.init();
 		
-
-		TableViewer tableViewer = new TableViewer(shell, SWT.None);
-		Table table = tableViewer.getTable();
-
-		table.setHeaderVisible(true);
-		table.setLinesVisible(true);
-		table.setSize(500, 300);
-		table.setLocation(0, 100);
 		
-		String[] titles = { "ISBN","Titre", "Auteur", "Prix", "Acheter"};
-	    for (int i = 0; i < titles.length; i++) {
-	      TableColumn column = new TableColumn(table, SWT.CENTER);
-	      column.setText(titles[i]);
-	    }
-
-	    List<Book> list = new ArrayList<Book>();
-	    for (int i = 0; i < 10; i++) {
-	    	list.add(new Book("titre", "autor", new Random().nextLong()));
-	    }
-
-	    final BookSorter bs = new BookSorter(tableViewer);
-	    for (int i=0; i<titles.length; i++) {
-	    	final int index=i;
-	    	table.getColumn(i).addSelectionListener(new SelectionListener() {
-				
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					bs.setSorterIndex(index);
-					
-				}
-				
-				@Override
-				public void widgetDefaultSelected(SelectionEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
-	      table.getColumn (i).setWidth(200);
-	    }
-	    
-	    
-	    table.setSize(shell.getSize().x, 400);
-	    tableViewer.setComparator(bs);
-	    tableViewer.setContentProvider(new BookContentProvider());
-	    tableViewer.setLabelProvider(new BookLabelProvider());
-	   	tableViewer.setInput(list);
-		shell.open();
-		while (!shell.isDisposed()) {
-			
-		
-			if (!display.readAndDispatch())
-				display.sleep();
-		}
+		Context.display();
 		
 		display.dispose();
 		tbm.dispose();
