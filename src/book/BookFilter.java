@@ -6,6 +6,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 public class BookFilter extends ViewerFilter {
 	
 	private String author = "";
+	private String title = "";
 
 	public void setAuthorFilter(String author) {
 		if(author==null)
@@ -13,10 +14,16 @@ public class BookFilter extends ViewerFilter {
 		this.author=author;
 	}
 	
+	public void setTitleFilter(String title) {
+		if(title==null)
+			this.title="";
+		this.title=title;
+	}
+	
 	@Override
 	public boolean select(Viewer arg0, Object arg1, Object arg2) {
 		Book book =(Book)arg2;
-		if(book.getAuthor().toLowerCase().contains(author.toLowerCase()))
+		if(book.getTitle().toLowerCase().contains(title.toLowerCase()) && book.getAuthor().toLowerCase().contains(author.toLowerCase()))
 			return true;
 		return false;
 	}

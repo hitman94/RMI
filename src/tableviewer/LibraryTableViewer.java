@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Random;
 
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -37,17 +37,49 @@ public class LibraryTableViewer {
 		 table.setSize(Context.getContentGroup().getSize().x - 25, Context.getContentGroup().getSize().y);
 		 table.setLocation(0, 50);
 		
+		 
+		 /***
+		  * 
+		  * BARRE DE RECHERCHE AUTEUR / TITRE
+		  */
+		 
+		 Label searchTitleLabel = new Label(Context.getContentGroup(), SWT.None);
+		 searchTitleLabel.setBounds(0, 20, 150, 20);
+		 searchTitleLabel.setText("Rechercher suivant le titre:");
+		 
 		 Text searchTitle = new Text(Context.getContentGroup(), SWT.SINGLE | SWT.BORDER);
-		 searchTitle.setBounds(0, 20, 150, 20);
+		 searchTitle.setBounds(150, 20, 150, 20);
 		 searchTitle.addModifyListener(new ModifyListener() {
 			
 			@Override
 			public void modifyText(ModifyEvent arg0) {
-				//System.out.println(searchTitle.getText());
-				bf.setAuthorFilter(searchTitle.getText());
+				bf.setTitleFilter(searchTitle.getText());
 				tableViewer.refresh();
 			}
 		});
+		 
+		 Label searchAuthorLabel = new Label(Context.getContentGroup(), SWT.None);
+		 searchAuthorLabel.setBounds(400, 20, 150, 20);
+		 searchAuthorLabel.setText("Rechercher suivant l'auteur:");
+		 
+		 Text searchAuthor = new Text(Context.getContentGroup(), SWT.SINGLE | SWT.BORDER);
+		 searchAuthor.setBounds(550, 20, 150, 20);
+		 searchAuthor.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent arg0) {
+				bf.setAuthorFilter(searchAuthor.getText());
+				tableViewer.refresh();
+			}
+		});
+		 
+		 
+		 
+		 /***
+		  * 
+		  * CREATION DES COLONNES
+		  */
+		 
 		 
 		
 		//Creation des colonnes du tablea
@@ -65,6 +97,7 @@ public class LibraryTableViewer {
 	    
 	    list.add(new Book("les misérables", "Victor hugo", 1L));
 	    list.add(new Book("moliere", "Shakespeare", 1L));
+	    list.add(new Book("la pute", "Shakespeare", 1L));
 	    list.add(new Book("rien", "jean jean", 1L));
 	    list.add(new Book("demain noublie jamais", "007", 1L));
 	    

@@ -27,10 +27,10 @@ public class BookSorter extends ViewerComparator{
 	
 			
 		case 1:
-			return b1.getTitle().compareTo(b2.getTitle());
+			return b1.getTitle().toLowerCase().compareTo(b2.getTitle().toLowerCase());
 			
 		case 2:
-			return b1.getAuthor().compareTo(b2.getAuthor());
+			return b1.getAuthor().toLowerCase().compareTo(b2.getAuthor().toLowerCase());
 			
 			default:return 0;
 		}
