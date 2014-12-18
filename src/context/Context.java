@@ -31,7 +31,6 @@ public class Context {
 			shell.setSize(width,height);
 			contentGroup =new Group(shell,SWT.None);
 			contentGroup.setBounds(0, 100, width, 500);
-			System.out.println(contentGroup.getLayout());
 		}
 		return shell;
 	}
