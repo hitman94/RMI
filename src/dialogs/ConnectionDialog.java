@@ -67,7 +67,7 @@ public class ConnectionDialog extends TitleAreaDialog{
 	protected void okPressed() {
 		
 		try {
-			if( ( users.isValide(userText.getText(), passText.getText())) || (userText.getText().equals("test") && passText.getText().equals("test")) )
+			if( (  (userText.getText().equals("test") && passText.getText().equals("test")) || users.isValide(userText.getText(), passText.getText())) )
 				super.okPressed();
 			else
 				setErrorMessage("Mauvais mot de passe/Nom d'utilisateur");
