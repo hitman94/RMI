@@ -1,9 +1,10 @@
 package book;
 
-import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
+
+import context.Context;
 
 public class BookLabelProvider implements ITableLabelProvider {
 
@@ -33,7 +34,7 @@ public class BookLabelProvider implements ITableLabelProvider {
 
 	@Override
 	public Image getColumnImage(Object arg0, int arg1) {
-		// TODO Auto-generated method stub
+	
 		return null;
 	}
 
@@ -54,6 +55,10 @@ public class BookLabelProvider implements ITableLabelProvider {
 		case 3:
 			return "pix";
 			
+		case 4:
+			return "2";
+			
+
 			default:return null;
 		
 		}

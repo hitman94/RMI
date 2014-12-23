@@ -4,18 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
+import client.Client;
 import book.Book;
 import book.BookContentProvider;
 import book.BookFilter;
@@ -27,14 +31,15 @@ public class LibraryTableViewer {
 	
 	public void display() {
 		Shell shell = Context.getShell();
-		TableViewer tableViewer = new TableViewer(Context.getContentGroup(), SWT.V_SCROLL | SWT.NO_SCROLL);
+		TableViewer tableViewer = new TableViewer(Context.getContentGroup(), SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.NO_SCROLL);
 		
 		BookFilter bf = new BookFilter();
 		
 		Table table = tableViewer.getTable();
+	
 		 table.setHeaderVisible(true);
 		 table.setLinesVisible(true);
-		 table.setSize(Context.getContentGroup().getSize().x - 25, Context.getContentGroup().getSize().y);
+		 table.setSize(Context.getContentGroup().getSize().x - 25, Context.getContentGroup().getSize().y-50);
 		 table.setLocation(0, 50);
 		
 		 
@@ -83,19 +88,27 @@ public class LibraryTableViewer {
 		 
 		
 		//Creation des colonnes du tablea
-		String[] titles = { "ISBN","Titre", "Auteur", "Prix","Quantité restante", "Acheter"};
-	    for (int i = 0; i < titles.length; i++) {
+		String[] titles = { "ISBN","Titre", "Auteur", "Prix","QuantitÃ© restante"};
+	    for (int i = 0; i < titles.length; i++) { 
+	    	
 	      TableColumn column = new TableColumn(table, SWT.CENTER);
-	      column.setText(titles[i]);
+	      column.setText(titles[i]);     
 	      
 	    }
-
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 	    List<Book> list = new ArrayList<Book>();
-	    for (int i = 0; i < 10; i++) {
+	    for (int i = 0; i < 20; i++) {
 	    	list.add(new Book("titre", "autor", new Random().nextLong()));
 	    }
 	    
-	    list.add(new Book("les misérables", "Victor hugo", 1L));
+	    list.add(new Book("les misÃ©rables", "Victor hugo", 1L));
 	    list.add(new Book("moliere", "Shakespeare", 1L));
 	    list.add(new Book("la pute", "Shakespeare", 1L));
 	    list.add(new Book("rien", "jean jean", 1L));
@@ -118,16 +131,64 @@ public class LibraryTableViewer {
 					
 				}
 			});
-	      table.getColumn (i).setWidth(table.getSize().x/titles.length);
+	      table.getColumn (i).setWidth(table.getSize().x/titles.length + 2);
+	      
+//		     //
+//		      if(titles[i].equals("Acheter")) {
+//		    	  TableViewerColumn columnViewer = new TableViewerColumn(tableViewer, table.getColumn(i));
+//		    	  columnViewer.setEditingSupport(new ButtonEditingSupport(tableViewer));
+//		      }
 	    }
 	    
-	   
+	    
 	    tableViewer.setComparator(bs);
 	    tableViewer.addFilter(bf);
 	    tableViewer.setContentProvider(new BookContentProvider());
 	    tableViewer.setLabelProvider(new BookLabelProvider());
 	   	tableViewer.setInput(list);
+	
 	   	
+	   	
+	   	
+	   	final Button addToBasket = new Button(Context.getShell(),SWT.PUSH);
+	   	addToBasket.setText("Ajouter le livre au panier");
+	   	addToBasket.setBounds(800,620,150,32);
+	   	addToBasket.setEnabled(false);
+	   	addToBasket.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				TableItem item = table.getItem(table.getSelectionIndex());
+				Book b = (Book)item.getData();
+				MessageDialog md = new MessageDialog(Context.getShell(), "Ajout du livre", null, "Voulez vous vraiment ajouter "+b.getTitle()+" de "+b.getAuthor()+" a votre panier ?", MessageDialog.CONFIRM, new String[]{"Oui","Non"}, 0);
+				if(md.open()==0)
+					Client.addBook(b);
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	   	
+	    
+	   	table.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				addToBasket.setEnabled(true);
+				
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	    
+	     
 	}
 
 }

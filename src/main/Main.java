@@ -4,6 +4,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import client.Client;
 import toolbar.ToolbarManager;
 import context.Context;
 import dialogs.ConnectionDialog;
@@ -19,6 +20,8 @@ public class Main {
 		ConnectionDialog cd = new ConnectionDialog(shell);
 		if(cd.open()!=Window.OK)
 			return;
+		
+		Client.setUsername(cd.getUsername());
 		
 		ToolbarManager tbm = new ToolbarManager();
 		tbm.init();

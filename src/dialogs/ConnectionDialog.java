@@ -19,6 +19,7 @@ public class ConnectionDialog extends TitleAreaDialog{
 
 	private Text passText;
 	private Text userText;
+	private String username;
 	private Users users;
 	public ConnectionDialog(Shell parentShell) {
 		super(parentShell);
@@ -29,7 +30,7 @@ public class ConnectionDialog extends TitleAreaDialog{
 	public void create() {
 		// TODO Auto-generated method stub
 		super.create();
-		setTitle("Connexion à SellingBook");
+		setTitle("Connexion Ã  SellingBook");
 		setMessage("Veuillez rentrer vos identifiants pour vous connecter");
 		try {
 			users = new UsersServiceLocator().getUsers();
@@ -67,8 +68,11 @@ public class ConnectionDialog extends TitleAreaDialog{
 	protected void okPressed() {
 		
 		try {
-			if( (  (userText.getText().equals("test") && passText.getText().equals("test")) || users.isValide(userText.getText(), passText.getText())) )
+			if( (  (userText.getText().equals("test") && passText.getText().equals("test")) || users.isValide(userText.getText(), passText.getText())) ) {
+				username=userText.getText();
 				super.okPressed();
+			}
+				
 			else
 				setErrorMessage("Mauvais mot de passe/Nom d'utilisateur");
 		} catch (RemoteException e) {
@@ -78,5 +82,8 @@ public class ConnectionDialog extends TitleAreaDialog{
 		
 	}
 	
+	public String getUsername() {
+		return username;
+	}
 
 }
