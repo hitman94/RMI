@@ -1,5 +1,5 @@
 /**
- * CompteServiceLocator.java
+ * BanqueServiceLocator.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -7,53 +7,53 @@
 
 package banque;
 
-public class CompteServiceLocator extends org.apache.axis.client.Service implements banque.CompteService {
+public class BanqueServiceLocator extends org.apache.axis.client.Service implements banque.BanqueService {
 
-    public CompteServiceLocator() {
+    public BanqueServiceLocator() {
     }
 
 
-    public CompteServiceLocator(org.apache.axis.EngineConfiguration config) {
+    public BanqueServiceLocator(org.apache.axis.EngineConfiguration config) {
         super(config);
     }
 
-    public CompteServiceLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
+    public BanqueServiceLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
         super(wsdlLoc, sName);
     }
 
-    // Use to get a proxy class for Compte
-    private java.lang.String Compte_address = "http://localhost:8080/AccountService/services/Compte";
+    // Use to get a proxy class for Banque
+    private java.lang.String Banque_address = "http://localhost:8080/RMIWebServices/services/Banque";
 
-    public java.lang.String getCompteAddress() {
-        return Compte_address;
+    public java.lang.String getBanqueAddress() {
+        return Banque_address;
     }
 
     // The WSDD service name defaults to the port name.
-    private java.lang.String CompteWSDDServiceName = "Compte";
+    private java.lang.String BanqueWSDDServiceName = "Banque";
 
-    public java.lang.String getCompteWSDDServiceName() {
-        return CompteWSDDServiceName;
+    public java.lang.String getBanqueWSDDServiceName() {
+        return BanqueWSDDServiceName;
     }
 
-    public void setCompteWSDDServiceName(java.lang.String name) {
-        CompteWSDDServiceName = name;
+    public void setBanqueWSDDServiceName(java.lang.String name) {
+        BanqueWSDDServiceName = name;
     }
 
-    public banque.Compte getCompte() throws javax.xml.rpc.ServiceException {
+    public banque.Banque getBanque() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
-            endpoint = new java.net.URL(Compte_address);
+            endpoint = new java.net.URL(Banque_address);
         }
         catch (java.net.MalformedURLException e) {
             throw new javax.xml.rpc.ServiceException(e);
         }
-        return getCompte(endpoint);
+        return getBanque(endpoint);
     }
 
-    public banque.Compte getCompte(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public banque.Banque getBanque(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
-            banque.CompteSoapBindingStub _stub = new banque.CompteSoapBindingStub(portAddress, this);
-            _stub.setPortName(getCompteWSDDServiceName());
+            banque.BanqueSoapBindingStub _stub = new banque.BanqueSoapBindingStub(portAddress, this);
+            _stub.setPortName(getBanqueWSDDServiceName());
             return _stub;
         }
         catch (org.apache.axis.AxisFault e) {
@@ -61,8 +61,8 @@ public class CompteServiceLocator extends org.apache.axis.client.Service impleme
         }
     }
 
-    public void setCompteEndpointAddress(java.lang.String address) {
-        Compte_address = address;
+    public void setBanqueEndpointAddress(java.lang.String address) {
+        Banque_address = address;
     }
 
     /**
@@ -72,9 +72,9 @@ public class CompteServiceLocator extends org.apache.axis.client.Service impleme
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (banque.Compte.class.isAssignableFrom(serviceEndpointInterface)) {
-                banque.CompteSoapBindingStub _stub = new banque.CompteSoapBindingStub(new java.net.URL(Compte_address), this);
-                _stub.setPortName(getCompteWSDDServiceName());
+            if (banque.Banque.class.isAssignableFrom(serviceEndpointInterface)) {
+                banque.BanqueSoapBindingStub _stub = new banque.BanqueSoapBindingStub(new java.net.URL(Banque_address), this);
+                _stub.setPortName(getBanqueWSDDServiceName());
                 return _stub;
             }
         }
@@ -94,8 +94,8 @@ public class CompteServiceLocator extends org.apache.axis.client.Service impleme
             return getPort(serviceEndpointInterface);
         }
         java.lang.String inputPortName = portName.getLocalPart();
-        if ("Compte".equals(inputPortName)) {
-            return getCompte();
+        if ("Banque".equals(inputPortName)) {
+            return getBanque();
         }
         else  {
             java.rmi.Remote _stub = getPort(serviceEndpointInterface);
@@ -105,7 +105,7 @@ public class CompteServiceLocator extends org.apache.axis.client.Service impleme
     }
 
     public javax.xml.namespace.QName getServiceName() {
-        return new javax.xml.namespace.QName("http://DefaultNamespace", "CompteService");
+        return new javax.xml.namespace.QName("http://banque", "BanqueService");
     }
 
     private java.util.HashSet ports = null;
@@ -113,7 +113,7 @@ public class CompteServiceLocator extends org.apache.axis.client.Service impleme
     public java.util.Iterator getPorts() {
         if (ports == null) {
             ports = new java.util.HashSet();
-            ports.add(new javax.xml.namespace.QName("http://DefaultNamespace", "Compte"));
+            ports.add(new javax.xml.namespace.QName("http://banque", "Banque"));
         }
         return ports.iterator();
     }
@@ -123,8 +123,8 @@ public class CompteServiceLocator extends org.apache.axis.client.Service impleme
     */
     public void setEndpointAddress(java.lang.String portName, java.lang.String address) throws javax.xml.rpc.ServiceException {
         
-if ("Compte".equals(portName)) {
-            setCompteEndpointAddress(address);
+if ("Banque".equals(portName)) {
+            setBanqueEndpointAddress(address);
         }
         else 
 { // Unknown Port Name
