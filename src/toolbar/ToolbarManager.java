@@ -29,7 +29,7 @@ public class ToolbarManager {
 		
 		ToolBar toolbar = new ToolBar(shell, SWT.FLAT);
 		toolbar.setSize(shell.getSize().x, 100);
-		toolbar.setLocation(shell.getSize().x/2 - 64, 0);
+		toolbar.setLocation(shell.getSize().x/2 - 128, 0);
 
 		Image imageBtn1 = new Image(display, "images/basket.png");
 		ToolItem btn1 = new ToolItem(toolbar, SWT.PUSH);
@@ -76,8 +76,31 @@ public class ToolbarManager {
 			}
 		});
 		
+		Image imageBtn3 = new Image(display, "images/wallet.png");
+		ToolItem btn3 = new ToolItem(toolbar, SWT.PUSH);
+		btn3.setImage(imageBtn3);
+		btn3.setText("Mon porte monnaie");
+		
+		btn3.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				Context.clearContent();
+				LibraryTableViewer ltb = new LibraryTableViewer();
+				ltb.display();
+				
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		resources.add(imageBtn1);
 		resources.add(imageBtn2);
+		resources.add(imageBtn3);
 	}
 	
 	public void dispose() {

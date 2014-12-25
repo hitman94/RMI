@@ -1,11 +1,12 @@
 package tableviewer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.rmi.RemoteException;
+
+import javax.xml.rpc.ServiceException;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -15,11 +16,13 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
-import client.Client;
+import banque.Banque;
+import banque.BanqueServiceLocator;
 import book.Book;
 import book.BookContentProvider;
 import book.BookLabelProvider;
 import book.BookSorter;
+import client.Client;
 import context.Context;
 import dialogs.PaymentDialog;
 
@@ -39,11 +42,6 @@ public class BasketTableViewer {
 	      TableColumn column = new TableColumn(table, SWT.CENTER);
 	      column.setText(titles[i]);
 	      
-	    }
-
-	    List<Book> list = new ArrayList<Book>();
-	    for (int i = 0; i < 50; i++) {
-	    	list.add(new Book("titre", "autor", new Random().nextLong()));
 	    }
 
 	    final BookSorter bs = new BookSorter(tableViewer);
@@ -83,7 +81,18 @@ public class BasketTableViewer {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				PaymentDialog pd = new PaymentDialog(Context.getShell());
-				pd.open();
+				if(pd.open()==Window.OK) {
+					try {
+						Banque b = new BanqueServiceLocator().getBanque();
+						if(b.retraitDe(Client.getUsername(), pd.getPrice()))
+							new MessageDialog(Context.getShell(), "Achat effectué", null, "Votre commande a bien été effetuée", MessageDialog.INFORMATION, new String[]{"OK"}, 0).open();
+						else
+							new MessageDialog(Context.getShell(), "Erreur", null, "Vous n'avez pas assez d'argent, veuillez en ajouter à votre porte monnaie", MessageDialog.ERROR, new String[]{"OK"}, 0).open();
+						
+					} catch (ServiceException | RemoteException e) {
+						new MessageDialog(Context.getShell(), "Erreur", null, "Impossible de se connecter à la banque", MessageDialog.ERROR, new String[]{"OK"}, 0).open();
+					}
+				}
 			}
 			
 			@Override

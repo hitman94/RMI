@@ -53,7 +53,7 @@ public class BookLabelProvider implements ITableLabelProvider {
 			return book.getAuthor();
 			
 		case 3:
-			return "pix";
+			return book.getPrice().toString();
 			
 		case 4:
 			return "2";
