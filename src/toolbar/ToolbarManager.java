@@ -57,7 +57,7 @@ public class ToolbarManager {
 		Image imageBtn2 = new Image(display, "images/books.png");
 		ToolItem btn2 = new ToolItem(toolbar, SWT.PUSH);
 		btn2.setImage(imageBtn2);
-		btn2.setText("Bibliothèque");
+		btn2.setText("BibliothÃ¨que");
 		
 		btn2.addSelectionListener(new SelectionListener() {
 			

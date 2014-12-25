@@ -14,6 +14,10 @@ public class Client {
 		basket.add(b);
 	}
 	
+	public static void removeBook(Book b) {
+		basket.remove(b);
+	}
+	
 	public static List<Book> getBasket() {
 		return basket;
 	}

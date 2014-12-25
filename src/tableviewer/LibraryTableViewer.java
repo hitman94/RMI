@@ -150,9 +150,9 @@ public class LibraryTableViewer {
 	   	
 	   	
 	   	
-	   	final Button addToBasket = new Button(Context.getShell(),SWT.PUSH);
+	   	final Button addToBasket = new Button(Context.getBottomGroup(),SWT.PUSH);
 	   	addToBasket.setText("Ajouter le livre au panier");
-	   	addToBasket.setBounds(800,620,150,32);
+	   	addToBasket.setBounds(800,20,150,32);
 	   	addToBasket.setEnabled(false);
 	   	addToBasket.addSelectionListener(new SelectionListener() {
 			
@@ -160,7 +160,7 @@ public class LibraryTableViewer {
 			public void widgetSelected(SelectionEvent arg0) {
 				TableItem item = table.getItem(table.getSelectionIndex());
 				Book b = (Book)item.getData();
-				MessageDialog md = new MessageDialog(Context.getShell(), "Ajout du livre", null, "Voulez vous vraiment ajouter "+b.getTitle()+" de "+b.getAuthor()+" a votre panier ?", MessageDialog.CONFIRM, new String[]{"Oui","Non"}, 0);
+				MessageDialog md = new MessageDialog(Context.getShell(), "Ajout du livre", null, "Voulez vous vraiment ajouter \""+b.getTitle()+"\" de "+b.getAuthor()+" a votre panier ?", MessageDialog.CONFIRM, new String[]{"Oui","Non"}, 0);
 				if(md.open()==0)
 					Client.addBook(b);
 			}

@@ -15,6 +15,7 @@ public class Context {
 	private static Display display = null;
 	private static Shell shell = null;
 	private static Group contentGroup = null;
+	private static Group bottomGroup = null;
 	
 	public static Display getDisplay() {
 		if(display==null) {
@@ -31,6 +32,8 @@ public class Context {
 			shell.setSize(width,height);
 			contentGroup =new Group(shell,SWT.None);
 			contentGroup.setBounds(0, 100, width, 500);
+			bottomGroup = new Group(shell,SWT.NONE);
+			bottomGroup.setBounds(0,600,width,300);
 		}
 		return shell;
 	}
@@ -39,8 +42,14 @@ public class Context {
 		return contentGroup;
 	}
 	
+	public static Group getBottomGroup() {
+		return bottomGroup;
+	}
+	
 	public static void clearContent() {
 		for(Control c :contentGroup.getChildren())
+			c.dispose();
+		for(Control c :bottomGroup.getChildren())
 			c.dispose();
 	}
 	
