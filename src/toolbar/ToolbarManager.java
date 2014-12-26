@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.ToolItem;
 
 import tableviewer.BasketTableViewer;
 import tableviewer.LibraryTableViewer;
+import walletpanel.Wallet;
 import context.Context;
 
 public class ToolbarManager {
@@ -86,8 +87,8 @@ public class ToolbarManager {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				Context.clearContent();
-				LibraryTableViewer ltb = new LibraryTableViewer();
-				ltb.display();
+				Wallet w = new Wallet();
+				w.display();
 				
 			}
 			
