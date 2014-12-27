@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 public class Context {
 	
 	
-	private static String title = "Bonjour";
+	private static String title = "MLV Books";
 	private static Integer width = 1024;
 	private static Integer height = 768;
 	private static Display display = null;
