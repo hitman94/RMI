@@ -8,7 +8,8 @@
 package banque;
 
 public interface Banque extends java.rmi.Remote {
-    public double valeurDuSolde(java.lang.String username) throws java.rmi.RemoteException;
-    public boolean retraitDe(java.lang.String username, double montant) throws java.rmi.RemoteException;
+    public boolean addUser(java.lang.String username) throws java.rmi.RemoteException;
     public void depotDe(java.lang.String username, double montant) throws java.rmi.RemoteException;
+    public boolean retraitDe(java.lang.String username, double montant) throws java.rmi.RemoteException;
+    public double valeurDuSolde(java.lang.String username) throws java.rmi.RemoteException;
 }

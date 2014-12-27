@@ -64,5 +64,11 @@ public class BanqueProxy implements banque.Banque {
     return banque.valeurDuSolde(username);
   }
   
+  public boolean addUser(java.lang.String username) throws RemoteException{
+    if (banque == null)
+      _initBanqueProxy();
+    return banque.addUser(username);
+  }
+  
   
 }
