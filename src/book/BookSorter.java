@@ -3,6 +3,8 @@ package book;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 
+import sellingBook.Book;
+
 public class BookSorter extends ViewerComparator{
 	
 	private int index =5;

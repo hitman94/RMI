@@ -16,9 +16,9 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
+import sellingBook.Book;
 import banque.Banque;
 import banque.BanqueServiceLocator;
-import book.Book;
 import book.BookContentProvider;
 import book.BookLabelProvider;
 import book.BookSorter;
@@ -84,8 +84,11 @@ public class BasketTableViewer {
 				if(pd.open()==Window.OK) {
 					try {
 						Banque b = new BanqueServiceLocator().getBanque();
-						if(b.retraitDe(Client.getUsername(), pd.getPrice()))
+						if(b.retraitDe(Client.getUsername(), pd.getPrice())) {
 							new MessageDialog(Context.getShell(), "Achat effectué", null, "Votre commande a bien été effetuée", MessageDialog.INFORMATION, new String[]{"OK"}, 0).open();
+							Client.cleanBasket();
+							tableViewer.setInput(Client.getBasket());
+						}
 						else
 							new MessageDialog(Context.getShell(), "Erreur", null, "Vous n'avez pas assez d'argent, veuillez en ajouter à votre porte monnaie", MessageDialog.ERROR, new String[]{"OK"}, 0).open();
 						

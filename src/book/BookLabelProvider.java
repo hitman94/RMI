@@ -4,7 +4,7 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-import context.Context;
+import sellingBook.Book;
 
 public class BookLabelProvider implements ITableLabelProvider {
 

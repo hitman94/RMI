@@ -6,6 +6,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 
+import client.Client;
+
 public class Context {
 	
 	
@@ -61,5 +63,6 @@ public class Context {
 			if (!display.readAndDispatch())
 				display.sleep();
 		}
+		Client.saveBasket();
 	}
 }

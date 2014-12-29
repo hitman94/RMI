@@ -5,6 +5,8 @@ import java.util.List;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
+import sellingBook.Book;
+
 public class BookContentProvider implements IStructuredContentProvider {
 
 	@Override

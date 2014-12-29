@@ -3,6 +3,8 @@ package book;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
+import sellingBook.Book;
+
 public class BookFilter extends ViewerFilter {
 	
 	private String author = "";

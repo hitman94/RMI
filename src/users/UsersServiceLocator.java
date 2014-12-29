@@ -22,7 +22,7 @@ public class UsersServiceLocator extends org.apache.axis.client.Service implemen
     }
 
     // Use to get a proxy class for Users
-    private java.lang.String Users_address = "http://localhost:8080/User/services/Users";
+    private java.lang.String Users_address = "http://localhost:8080/WebServicesProjectRMI/services/Users";
 
     public java.lang.String getUsersAddress() {
         return Users_address;

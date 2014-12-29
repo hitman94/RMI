@@ -1,11 +1,19 @@
 package main;
 
+import java.rmi.RemoteException;
+
+import javax.xml.rpc.ServiceException;
+
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import client.Client;
+import sellingBook.Book;
+import sellingBook.SellingBookWS;
+import sellingBook.SellingBookWSServiceLocator;
 import toolbar.ToolbarManager;
+import client.Client;
 import context.Context;
 import dialogs.ConnectionDialog;
 
@@ -23,6 +31,9 @@ public class Main {
 		
 		Client.setUsername(cd.getUsername());
 		
+		Client.loadBasket();
+		
+		
 		ToolbarManager tbm = new ToolbarManager();
 		tbm.init();
 		
@@ -31,5 +42,8 @@ public class Main {
 		
 		display.dispose();
 		tbm.dispose();
+		
+
+		
 	}
 }

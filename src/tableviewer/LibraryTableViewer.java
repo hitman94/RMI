@@ -19,12 +19,12 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-import client.Client;
-import book.Book;
+import sellingBook.Book;
 import book.BookContentProvider;
 import book.BookFilter;
 import book.BookLabelProvider;
 import book.BookSorter;
+import client.Client;
 import context.Context;
 
 public class LibraryTableViewer {
@@ -105,14 +105,8 @@ public class LibraryTableViewer {
 	    
 	    List<Book> list = new ArrayList<Book>();
 	    for (int i = 0; i < 20; i++) {
-	    	list.add(new Book("titre", "autor", new Random().nextLong(),new Random().nextDouble()%10));
+	    	list.add(new Book(new Random().nextLong(),"titre", new Random().nextDouble()%10,"autor" ));
 	    }
-	    
-	    list.add(new Book("les misérables", "Victor hugo", 1L,20.0));
-	    list.add(new Book("moliere", "Shakespeare", 1L,15.85));
-	    list.add(new Book("la pute", "Shakespeare", 1L,14.30));
-	    list.add(new Book("rien", "jean jean", 1L,13.20));
-	    list.add(new Book("demain noublie jamais", "007", 1L,15.99));
 	    
 	    final BookSorter bs = new BookSorter(tableViewer);
 	    for (int i=0; i<titles.length; i++) {
