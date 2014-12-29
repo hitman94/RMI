@@ -72,6 +72,7 @@ public class Wallet {
 					Double toAdd = new Double(add.getText());
 					b.depotDe(Client.getUsername(), toAdd);
 					amount.setText( ((Double)b.valeurDuSolde(Client.getUsername())).toString() );
+					amount.pack();
 					
 				} catch(NumberFormatException e) {
 					new MessageDialog(Context.getShell(), "Erreur", null, "Veuillez indiquer un nombre!", MessageDialog.ERROR, new String[]{"OK"}, 0).open();

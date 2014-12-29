@@ -1,8 +1,11 @@
 package tableviewer;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import javax.xml.rpc.ServiceException;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.TableViewer;
@@ -20,6 +23,8 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
 import sellingBook.Book;
+import sellingBook.SellingBookWS;
+import sellingBook.SellingBookWSServiceLocator;
 import book.BookContentProvider;
 import book.BookFilter;
 import book.BookLabelProvider;
@@ -107,6 +112,22 @@ public class LibraryTableViewer {
 	    for (int i = 0; i < 20; i++) {
 	    	list.add(new Book(new Random().nextLong(),"titre", new Random().nextDouble()%10,"autor" ));
 	    }
+	    
+//	    SellingBookWS sb;
+//		try {
+//			sb = new SellingBookWSServiceLocator().getSellingBookWS();
+//			sb.test();
+//			 Book[] listBook = sb.getAllBooks();
+//			 for(Book b: listBook)
+//				 list.add(b);
+//		} catch (ServiceException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	   
 	    
 	    final BookSorter bs = new BookSorter(tableViewer);
 	    for (int i=0; i<titles.length; i++) {
