@@ -8,32 +8,29 @@
 package sellingBook;
 
 public class Book  implements java.io.Serializable {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -8117130946963122801L;
-
-	private java.lang.Long ISBN;
+    private java.lang.Long ISBN;
 
     private java.lang.String author;
 
     private java.lang.Double price;
+
+    private Integer stock;
 
     private java.lang.String title;
 
     public Book() {
     }
 
-    
-    
     public Book(
            java.lang.Long ISBN,
            java.lang.String author,
            java.lang.Double price,
+           int stock,
            java.lang.String title) {
            this.ISBN = ISBN;
            this.author = author;
            this.price = price;
+           this.stock = stock;
            this.title = title;
     }
 
@@ -99,6 +96,26 @@ public class Book  implements java.io.Serializable {
 
 
     /**
+     * Gets the stock value for this Book.
+     * 
+     * @return stock
+     */
+    public Integer getStock() {
+        return stock;
+    }
+
+
+    /**
+     * Sets the stock value for this Book.
+     * 
+     * @param stock
+     */
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+
+    /**
      * Gets the title value for this Book.
      * 
      * @return title
@@ -138,6 +155,7 @@ public class Book  implements java.io.Serializable {
             ((this.price==null && other.getPrice()==null) || 
              (this.price!=null &&
               this.price.equals(other.getPrice()))) &&
+            this.stock == other.getStock() &&
             ((this.title==null && other.getTitle()==null) || 
              (this.title!=null &&
               this.title.equals(other.getTitle())));
@@ -161,6 +179,7 @@ public class Book  implements java.io.Serializable {
         if (getPrice() != null) {
             _hashCode += getPrice().hashCode();
         }
+        _hashCode += getStock();
         if (getTitle() != null) {
             _hashCode += getTitle().hashCode();
         }
@@ -178,25 +197,31 @@ public class Book  implements java.io.Serializable {
         elemField.setFieldName("ISBN");
         elemField.setXmlName(new javax.xml.namespace.QName("http://sellingBook", "ISBN"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"));
-        elemField.setNillable(false);
+        elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("author");
         elemField.setXmlName(new javax.xml.namespace.QName("http://sellingBook", "author"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setNillable(false);
+        elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("price");
         elemField.setXmlName(new javax.xml.namespace.QName("http://sellingBook", "price"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"));
+        elemField.setNillable(true);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("stock");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://sellingBook", "stock"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("title");
         elemField.setXmlName(new javax.xml.namespace.QName("http://sellingBook", "title"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setNillable(false);
+        elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);
     }
 

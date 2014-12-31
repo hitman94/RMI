@@ -56,7 +56,7 @@ public class BookLabelProvider implements ITableLabelProvider {
 			return book.getPrice().toString();
 			
 		case 4:
-			return "2";
+			return book.getStock().toString();
 			
 
 			default:return null;

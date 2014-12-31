@@ -56,28 +56,16 @@ public class SellingBookWSProxy implements sellingBook.SellingBookWS {
     sellingBookWS.serialize(username, basket);
   }
   
-  public sellingBook.Book[] unserialize(java.lang.String username) throws java.rmi.RemoteException{
+  public sellingBook.Book[] getBooksThatContain(java.lang.String title) throws java.rmi.RemoteException{
     if (sellingBookWS == null)
       _initSellingBookWSProxy();
-    return sellingBookWS.unserialize(username);
+    return sellingBookWS.getBooksThatContain(title);
   }
   
-  public void addBook(long isbn, java.lang.String title, java.lang.String authour, double price) throws java.rmi.RemoteException{
+  public sellingBook.Book removeBook(long ISBN) throws java.rmi.RemoteException{
     if (sellingBookWS == null)
       _initSellingBookWSProxy();
-    sellingBookWS.addBook(isbn, title, authour, price);
-  }
-  
-  public sellingBook.Book[] getAllBooks() throws java.rmi.RemoteException{
-    if (sellingBookWS == null)
-      _initSellingBookWSProxy();
-    return sellingBookWS.getAllBooks();
-  }
-  
-  public sellingBook.Book[] getBooksByAuthor(java.lang.String author) throws java.rmi.RemoteException{
-    if (sellingBookWS == null)
-      _initSellingBookWSProxy();
-    return sellingBookWS.getBooksByAuthor(author);
+    return sellingBookWS.removeBook(ISBN);
   }
   
   public sellingBook.Book getBookByISBN(long ISBN) throws java.rmi.RemoteException{
@@ -92,16 +80,28 @@ public class SellingBookWSProxy implements sellingBook.SellingBookWS {
     return sellingBookWS.getBookByTitle(title);
   }
   
-  public sellingBook.Book removeBook(long ISBN) throws java.rmi.RemoteException{
+  public sellingBook.Book[] getBooksByAuthor(java.lang.String author) throws java.rmi.RemoteException{
     if (sellingBookWS == null)
       _initSellingBookWSProxy();
-    return sellingBookWS.removeBook(ISBN);
+    return sellingBookWS.getBooksByAuthor(author);
   }
   
-  public sellingBook.Book[] getBooksThatContain(java.lang.String title) throws java.rmi.RemoteException{
+  public sellingBook.Book[] getAllBooks() throws java.rmi.RemoteException{
     if (sellingBookWS == null)
       _initSellingBookWSProxy();
-    return sellingBookWS.getBooksThatContain(title);
+    return sellingBookWS.getAllBooks();
+  }
+  
+  public sellingBook.Book[] unserialize(java.lang.String username) throws java.rmi.RemoteException{
+    if (sellingBookWS == null)
+      _initSellingBookWSProxy();
+    return sellingBookWS.unserialize(username);
+  }
+  
+  public void addBook(long isbn, java.lang.String title, java.lang.String authour, double price, int nbExemplaire) throws java.rmi.RemoteException{
+    if (sellingBookWS == null)
+      _initSellingBookWSProxy();
+    sellingBookWS.addBook(isbn, title, authour, price, nbExemplaire);
   }
   
   

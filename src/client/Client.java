@@ -28,8 +28,9 @@ public class Client implements Serializable{
 		basket.remove(b);
 	}
 	
-	public static List<Book> getBasket() {
-		return basket;
+	public static Book[] getBasket() {
+		Book[] toReturn = new Book[basket.size()];
+		return basket.toArray(toReturn);
 	}
 	
 	public static void cleanBasket() {
@@ -60,30 +61,26 @@ public class Client implements Serializable{
 			else
 				System.err.println("renvoit de null");
 				
-		} catch ( RemoteException e) {
+		} catch ( RemoteException | ServiceException e) {
 			new MessageDialog(Context.getShell(), "Erreur", null, "Votre panier n'a pas pu etre chargé", MessageDialog.ERROR, new String[]{"OK"}, 0).open();
-		} catch (ServiceException e) {
-			new MessageDialog(Context.getShell(), "Erreur", null, "Votre panier n'a pas pu etre chargé 1", MessageDialog.ERROR, new String[]{"OK"}, 0).open();
 		}
 	}
 	
 	public static void saveBasket() {
 		SellingBookWS sb;
-		if(Client.getBasket().size()>0) {
+
 			try {
 				sb = new SellingBookWSServiceLocator().getSellingBookWS();
-
-				Book[] array= new Book[Client.getBasket().size()];
-				array = Client.getBasket().toArray(array);
-				for(Book b : array) {
-						System.out.println(b.getAuthor());
-				}
-				sb.serialize(Client.getUsername(), array);
+				
+				if(basket.size()>0)
+					sb.serialize(Client.getUsername(), Client.getBasket());
+				else
+					sb.serialize(Client.getUsername(),null);
 					
 			} catch (ServiceException | RemoteException e) {
 				System.err.println("impossible de sauvegarder le panier");
 			}
-		}
+		
 	}
 	
 }

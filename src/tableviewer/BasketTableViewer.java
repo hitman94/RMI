@@ -119,7 +119,7 @@ public class BasketTableViewer {
 				MessageDialog md = new MessageDialog(Context.getShell(), "Suppression du livre", null, "Voulez vous vraiment supprimer \""+b.getTitle()+"\" de "+b.getAuthor()+" de votre panier ?", MessageDialog.CONFIRM, new String[]{"Oui","Non"}, 0);
 				if(md.open()==0) {
 					Client.removeBook(b);
-					tableViewer.refresh();
+					tableViewer.setInput(Client.getBasket());
 				}
 			}
 			

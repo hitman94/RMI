@@ -23,9 +23,8 @@ public class BookContentProvider implements IStructuredContentProvider {
 
 	@Override
 	public Object[] getElements(Object inputElement) {
-		List<Book> list = (List<Book>)inputElement;
 		
-		return list.toArray();
+		return (Object[])inputElement;
 	}
 
 }

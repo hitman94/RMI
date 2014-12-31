@@ -60,11 +60,23 @@ public class LibraryTableViewer {
 		 Text searchTitle = new Text(Context.getContentGroup(), SWT.SINGLE | SWT.BORDER);
 		 searchTitle.setBounds(150, 20, 150, 20);
 		 searchTitle.addModifyListener(new ModifyListener() {
+			 
+			 SellingBookWS sb=null;
 			
 			@Override
 			public void modifyText(ModifyEvent arg0) {
-				bf.setTitleFilter(searchTitle.getText());
-				tableViewer.refresh();
+				try {
+					if(sb==null)
+						sb = new SellingBookWSServiceLocator().getSellingBookWS();
+					
+					Book[] list = sb.getBooksThatContain(searchTitle.getText());
+					
+					tableViewer.setInput(list);
+					tableViewer.refresh();
+				} catch (ServiceException | RemoteException e1) {
+					new MessageDialog(Context.getShell(), "Erreur", null, "Impossible de contacter la bibliothèque", MessageDialog.ERROR, new String[]{"OK"}, 0).open();
+					
+				}
 			}
 		});
 		 
@@ -76,10 +88,22 @@ public class LibraryTableViewer {
 		 searchAuthor.setBounds(550, 20, 150, 20);
 		 searchAuthor.addModifyListener(new ModifyListener() {
 			
+			 SellingBookWS sb=null;
+			 
 			@Override
 			public void modifyText(ModifyEvent arg0) {
-				bf.setAuthorFilter(searchAuthor.getText());
-				tableViewer.refresh();
+				 
+					try {
+						if(sb==null)
+							sb = new SellingBookWSServiceLocator().getSellingBookWS();
+						
+						Book[] list = sb.getBooksByAuthor(searchAuthor.getText());
+						tableViewer.setInput(list);
+						tableViewer.refresh();
+					} catch (ServiceException | RemoteException e1) {
+						new MessageDialog(Context.getShell(), "Erreur", null, "Impossible de contacter la bibliothèque", MessageDialog.ERROR, new String[]{"OK"}, 0).open();
+						
+					}				
 			}
 		});
 		 
@@ -108,10 +132,10 @@ public class LibraryTableViewer {
 	    
 	    
 	    
-	    List<Book> list = new ArrayList<Book>();
-	    for (int i = 0; i < 20; i++) {
-	    	list.add(new Book(new Random().nextLong(),"titre", new Random().nextDouble()%10,"autor" ));
-	    }
+//	    List<Book> list = new ArrayList<Book>();
+//	    for (int i = 0; i < 20; i++) {
+//	    	list.add(new Book(new Random().nextLong(),"titre", new Random().nextDouble()%10,"autor" ));
+//	    }
 	    
 //	    SellingBookWS sb;
 //		try {
@@ -147,12 +171,6 @@ public class LibraryTableViewer {
 				}
 			});
 	      table.getColumn (i).setWidth(table.getSize().x/titles.length + 2);
-	      
-//		     //
-//		      if(titles[i].equals("Acheter")) {
-//		    	  TableViewerColumn columnViewer = new TableViewerColumn(tableViewer, table.getColumn(i));
-//		    	  columnViewer.setEditingSupport(new ButtonEditingSupport(tableViewer));
-//		      }
 	    }
 	    
 	    
@@ -160,7 +178,7 @@ public class LibraryTableViewer {
 	    tableViewer.addFilter(bf);
 	    tableViewer.setContentProvider(new BookContentProvider());
 	    tableViewer.setLabelProvider(new BookLabelProvider());
-	   	tableViewer.setInput(list);
+	   //	tableViewer.setInput(list);
 	
 	   	
 	   	
