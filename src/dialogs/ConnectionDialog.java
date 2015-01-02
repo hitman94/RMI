@@ -92,7 +92,7 @@ public class ConnectionDialog extends TitleAreaDialog{
 	protected void okPressed() {
 		
 		try {
-			if( (  (userText.getText().equals("test") && passText.getText().equals("test")) || users.isValide(userText.getText(), passText.getText())) ) {
+			if( users.isValide(userText.getText(), passText.getText()) ) {
 				username=userText.getText();
 				super.okPressed();
 			}

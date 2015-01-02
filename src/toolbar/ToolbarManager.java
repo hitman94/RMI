@@ -32,7 +32,7 @@ public class ToolbarManager {
 		toolbar.setSize(shell.getSize().x, 100);
 		toolbar.setLocation(shell.getSize().x/2 - 128, 0);
 
-		Image imageBtn1 = new Image(display, "images/basket.png");
+		Image imageBtn1 = new Image(display, getClass().getResourceAsStream("/images/basket.png"));
 		ToolItem btn1 = new ToolItem(toolbar, SWT.PUSH);
 		btn1.setImage(imageBtn1);
 		btn1.setText("Mon Panier");
@@ -55,7 +55,7 @@ public class ToolbarManager {
 		});
 		
 
-		Image imageBtn2 = new Image(display, "images/books.png");
+		Image imageBtn2 = new Image(display, getClass().getResourceAsStream("/images/books.png") );
 		ToolItem btn2 = new ToolItem(toolbar, SWT.PUSH);
 		btn2.setImage(imageBtn2);
 		btn2.setText("Bibliothèque");
@@ -77,7 +77,7 @@ public class ToolbarManager {
 			}
 		});
 		
-		Image imageBtn3 = new Image(display, "images/wallet.png");
+		Image imageBtn3 = new Image(display, getClass().getResourceAsStream("/images/wallet.png"));
 		ToolItem btn3 = new ToolItem(toolbar, SWT.PUSH);
 		btn3.setImage(imageBtn3);
 		btn3.setText("Mon porte monnaie");

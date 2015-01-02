@@ -28,8 +28,7 @@ public class Main {
 		Client.setUsername(cd.getUsername());
 		
 		Client.loadBasket();
-		
-		Image m = new Image(Context.getDisplay(),"images/bigbook.png");
+		Image m = new Image(Context.getDisplay(),Main.class.getResourceAsStream("/images/bigbook.png"));
 		Label label = new Label(Context.getContentGroup(),SWT.CENTER);
 		label.setBounds(250, 1, 512, 512);
 		label.setImage(m);
