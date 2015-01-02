@@ -17,6 +17,8 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 import sellingBook.Book;
+import sellingBook.SellingBookWS;
+import sellingBook.SellingBookWSServiceLocator;
 import banque.Banque;
 import banque.BanqueServiceLocator;
 import book.BookContentProvider;
@@ -84,6 +86,9 @@ public class BasketTableViewer {
 				if(pd.open()==Window.OK) {
 					try {
 						Banque b = new BanqueServiceLocator().getBanque();
+						SellingBookWS sell = new SellingBookWSServiceLocator().getSellingBookWS();
+						for(Book book : Client.getBasket())
+							sell.removeBook(book.getISBN());
 						if(b.retraitDe(Client.getUsername(), pd.getPrice())) {
 							new MessageDialog(Context.getShell(), "Achat effectué", null, "Votre commande a bien été effetuée", MessageDialog.INFORMATION, new String[]{"OK"}, 0).open();
 							Client.cleanBasket();

@@ -1,17 +1,13 @@
 package main;
 
-import java.rmi.RemoteException;
 
-import javax.xml.rpc.ServiceException;
-
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-import sellingBook.Book;
-import sellingBook.SellingBookWS;
-import sellingBook.SellingBookWSServiceLocator;
 import toolbar.ToolbarManager;
 import client.Client;
 import context.Context;
@@ -32,6 +28,11 @@ public class Main {
 		Client.setUsername(cd.getUsername());
 		
 		Client.loadBasket();
+		
+		Image m = new Image(Context.getDisplay(),"images/bigbook.png");
+		Label label = new Label(Context.getContentGroup(),SWT.CENTER);
+		label.setBounds(250, 1, 512, 512);
+		label.setImage(m);
 		
 		
 		ToolbarManager tbm = new ToolbarManager();

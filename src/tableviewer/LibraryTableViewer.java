@@ -98,6 +98,7 @@ public class LibraryTableViewer {
 							sb = new SellingBookWSServiceLocator().getSellingBookWS();
 						
 						Book[] list = sb.getBooksByAuthor(searchAuthor.getText());
+					
 						tableViewer.setInput(list);
 						tableViewer.refresh();
 					} catch (ServiceException | RemoteException e1) {
