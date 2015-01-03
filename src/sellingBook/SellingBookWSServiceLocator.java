@@ -22,7 +22,7 @@ public class SellingBookWSServiceLocator extends org.apache.axis.client.Service 
     }
 
     // Use to get a proxy class for SellingBookWS
-    private java.lang.String SellingBookWS_address = "http://localhost:8080/WebServicesProjectRMI/services/SellingBookWS";
+    private java.lang.String SellingBookWS_address = "http://localhost:8080/RMIWebServices/services/SellingBookWS";
 
     public java.lang.String getSellingBookWSAddress() {
         return SellingBookWS_address;
